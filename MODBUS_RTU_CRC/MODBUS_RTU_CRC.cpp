@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "parser.h"
+#include "crc.h"
 
 
 #define MAXSIZE 256 
@@ -13,8 +14,10 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	char *parsedData = NULL;
 	char input[MAXSIZE];
-	char repeats[10];
-	int bytesNumer;
+	char repeatInput[10];
+	int  bytesNumer;
+	unsigned long repeat;
+	short crc;
 	bool exit = false;
 
 	while (!exit)
@@ -32,19 +35,22 @@ int _tmain(int argc, _TCHAR* argv[])
 		//get input number of elements
 		printf_s("Podaj liczbe powtorzen wykonywania algorytmu wyliczania CRC:\n");
 		fflush(stdin);
-		fgets(repeats, sizeof(repeats), stdin);
-		removeEndLine(repeats);
-		if (!validateIntString(repeats, strnlen_s(repeats, MAXSIZE))){
+		fgets(repeatInput, sizeof(repeatInput), stdin);
+		removeEndLine(repeatInput);
+		if (!validateIntString(repeatInput, strnlen_s(repeatInput, MAXSIZE))){
 			printf_s("Podany ciag znakow nie jest liczba dziesietna.\n");
 			exit = promptExit();
 			continue;
 		}
 			
 		bytesNumer = convertHexStringToLongData(&parsedData, input, MAXSIZE);
+		repeat = strtoul(repeatInput, NULL, 10);
 		printf_s("liczba bajtow: %d\n", bytesNumer);
 		for (int i = 0; i < bytesNumer; i++)
 			printf_s("%02X", parsedData[i] & 0xFF);
 		putc('\n', stdout);
+		crc = generateCRC(parsedData, bytesNumer);
+		printf_s("CRC: %X\n", crc & 0xFFFF);
 		exit = promptExit();
 	}
 	
