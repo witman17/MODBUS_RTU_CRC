@@ -23,24 +23,28 @@ int _tmain(int argc, _TCHAR* argv[])
 		printf_s("Podaj sekwencje bajtow w notacji heksadecymalnej:\n");
 		fflush(stdin);
 		fgets(input, sizeof(input), stdin);
-		printf_s("Podaj liczbe powtorzen wykonywania algorytmu wyliczania CRC:\n");
-		fflush(stdin);
-		fgets(repeats, sizeof(repeats), stdin);
-		
+		removeEndLine(input);
 		if (!validateHexString(input, strnlen_s(input, MAXSIZE))){
 			printf_s("Podany ciag znakow nie jest liczba hex.\n");
 			exit = promptExit();
 			continue;
 		}
-		if (!validateIntString(repeats, strnlen_s(input, MAXSIZE))){
+		//get input number of elements
+		printf_s("Podaj liczbe powtorzen wykonywania algorytmu wyliczania CRC:\n");
+		fflush(stdin);
+		fgets(repeats, sizeof(repeats), stdin);
+		removeEndLine(repeats);
+		if (!validateIntString(repeats, strnlen_s(repeats, MAXSIZE))){
 			printf_s("Podany ciag znakow nie jest liczba dziesietna.\n");
 			exit = promptExit();
 			continue;
 		}
 			
-
-		bytesNumer = convertHexStringToLongData(parsedData, input, MAXSIZE);
-		printf_s("liczba bajtow: %d", bytesNumer);
+		bytesNumer = convertHexStringToLongData(&parsedData, input, MAXSIZE);
+		printf_s("liczba bajtow: %d\n", bytesNumer);
+		for (int i = 0; i < bytesNumer; i++)
+			printf_s("%02X", parsedData[i] & 0xFF);
+		putc('\n', stdout);
 		exit = promptExit();
 	}
 	
