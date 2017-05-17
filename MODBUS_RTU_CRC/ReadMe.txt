@@ -2,39 +2,10 @@
     CONSOLE APPLICATION : MODBUS_RTU_CRC Project Overview
 ========================================================================
 
-AppWizard has created this MODBUS_RTU_CRC application for you.
-
-This file contains a summary of what you will find in each of the files that
-make up your MODBUS_RTU_CRC application.
-
-
-MODBUS_RTU_CRC.vcxproj
-    This is the main project file for VC++ projects generated using an Application Wizard.
-    It contains information about the version of Visual C++ that generated the file, and
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
-
-MODBUS_RTU_CRC.vcxproj.filters
-    This is the filters file for VC++ projects generated using an Application Wizard. 
-    It contains information about the association between the files in your project 
-    and the filters. This association is used in the IDE to show grouping of files with
-    similar extensions under a specific node (for e.g. ".cpp" files are associated with the
-    "Source Files" filter).
-
-MODBUS_RTU_CRC.cpp
-    This is the main application source file.
+/////////////////////////////////////////////////////////////////////////////
+  MODNUS_RTU_CRC.cpp - main program
 
 /////////////////////////////////////////////////////////////////////////////
-Other standard files:
-
-StdAfx.h, StdAfx.cpp
-    These files are used to build a precompiled header (PCH) file
-    named MODBUS_RTU_CRC.pch and a precompiled types file named StdAfx.obj.
-
-/////////////////////////////////////////////////////////////////////////////
-Other notes:
-
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
+  parser.c - validating, parsing input string into hex values functions
 
 /////////////////////////////////////////////////////////////////////////////
