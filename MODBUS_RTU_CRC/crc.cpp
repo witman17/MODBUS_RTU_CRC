@@ -34,7 +34,6 @@ static unsigned char aCRCLo[] =
 	0x41, 0x81, 0x80, 0x40
 };
 
-
 short generateCRC(char *bytes, int bytesNumber){
 	unsigned char HiByte = 0xFF;
 	unsigned char LoByte = 0xFF;

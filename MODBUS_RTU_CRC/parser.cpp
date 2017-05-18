@@ -27,19 +27,21 @@ bool validateHexString(char *string, const int stringSize){
 
     // Adds additional 0 hex to the end when string characters are uneven
 int convertHexStringToLongData(char **dataOut, char * string, const int stringSize){
-	int bytesNumber = strnlen_s(string, stringSize) / 2 + strnlen_s(string, stringSize) % 2;
+	char elem[2];
+	int  i;
+	int  uneven = strnlen_s(string, stringSize) % 2;
+	int  bytesNumber = strnlen_s(string, stringSize) / 2 + uneven;
 	dataOut[0] = (char *)malloc(sizeof(*dataOut) * bytesNumber);
 	if (!*dataOut)
 		return 0;
-	for (int i = 0; i < bytesNumber; i++){
-		char elem[2];
+	for (i = 0; i < bytesNumber; i++){
 		elem[0] = *string++;
 		elem[1] = *string++;		
 		//printf_s("%c\n", *dataOut[i]);
 		dataOut[0][i] = (char)strtol(elem, NULL, 16);
-		if ((i == bytesNumber - 2) && !elem[1])
-			dataOut[0][i] <<= 4;
 	}
+	if (uneven)
+		dataOut[0][--i] <<= 4;
 	return bytesNumber;
 }
 
