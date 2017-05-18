@@ -37,7 +37,7 @@ int convertHexStringToLongData(char **dataOut, char * string, const int stringSi
 		elem[1] = *string++;		
 		//printf_s("%c\n", *dataOut[i]);
 		dataOut[0][i] = (char)strtol(elem, NULL, 16);
-		if ((i == bytesNumber - 1) && !elem[1])
+		if ((i == bytesNumber - 2) && !elem[1])
 			dataOut[0][i] <<= 4;
 	}
 	return bytesNumber;
